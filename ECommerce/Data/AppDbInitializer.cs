@@ -47,19 +47,20 @@ namespace ECommerce.Data
                     {
                         new Product()
                         {
-                            Name = "P1",Descriptoin="D1",Price=150,ImageURL="https...",
+                            Name = "P1",Description="D1",Price=150,Image="/Images/29.png",
                             ProductColor = ProductColor.Red,CategoryId=1
                         },
                         new Product()
                         {
-                            Name = "P2",Descriptoin="D2",Price=200,ImageURL="https...",
+                            Name = "P2",Description="D2",Price=200,Image="/Images/32.png",
                             ProductColor = ProductColor.Green,CategoryId=2
                         },
                         new Product()
                         {
-                            Name = "P3",Descriptoin="D3",Price=300,ImageURL="https...",
+                            Name = "P3",Description="D3",Price=300,Image="/Images/33.png",
                             ProductColor = ProductColor.Yellow,CategoryId=3
                         },
+                        
                     };
 
                     context.Products.AddRange(Products);

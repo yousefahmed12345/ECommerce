@@ -2,18 +2,14 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ECommerce.Controllers;
+using ECommerce.Data.Base;
 
 
 namespace ECommerce.Data.Services
 {
-    public interface ICategoryServices
+    public interface ICategoryServices : IEntityBaseRepository<Category>
     {
-        Task<IEnumerable<Category>> GetAllAsync();
-        Task<Category> GetByIdAsync(int id);
-
-        Task CreateAsync(Category entity);
-        Task UpdateAsync(Category entity);
-        Task DeleteAsync(int id);
+      
       
     }
 }

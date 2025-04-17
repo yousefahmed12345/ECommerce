@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using ECommerce.Data.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerce.Models
 {
@@ -10,7 +11,7 @@ namespace ECommerce.Models
 
         public double Price { get; set; }
         public string Image { get; set; }
-        public Data.ProductColor ProductColor { get; set; }
+        public ProductColor ProductColor { get; set; }
 
         // Navigation Property
 

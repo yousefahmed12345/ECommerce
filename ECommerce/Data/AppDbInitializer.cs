@@ -1,4 +1,5 @@
-﻿using ECommerce.Models;
+﻿using ECommerce.Data.Enums;
+using ECommerce.Models;
 using Microsoft.AspNetCore.Builder;
 
 namespace ECommerce.Data
@@ -47,17 +48,17 @@ namespace ECommerce.Data
                     {
                         new Product()
                         {
-                            Name = "P1",Description="D1",Price=150,Image="/Images/29.png",
+                            Name = "P1",Description="D1",Price=150,Image="/Images/1.png",
                             ProductColor = ProductColor.Red,CategoryId=1
                         },
                         new Product()
                         {
-                            Name = "P2",Description="D2",Price=200,Image="/Images/32.png",
+                            Name = "P2",Description="D2",Price=200,Image="/Images/4.png",
                             ProductColor = ProductColor.Green,CategoryId=2
                         },
                         new Product()
                         {
-                            Name = "P3",Description="D3",Price=300,Image="/Images/33.png",
+                            Name = "P3",Description="D3",Price=300,Image="/Images/11.png",
                             ProductColor = ProductColor.Yellow,CategoryId=3
                         },
                         

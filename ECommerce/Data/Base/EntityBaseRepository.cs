@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ECommerce.Data.Base
@@ -33,22 +34,50 @@ namespace ECommerce.Data.Base
             }
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(Func<object, object> value)
         => await _entities.ToListAsync();
+
+
+        public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] include)
+        {
+            IQueryable<T> query = _entities.AsQueryable();
+            query = include.Aggregate(query, (current, include) => current.Include(include));
+            return await query.ToListAsync();
+        }
+
+       
 
         public async Task<T> GetByIdAsync(int id)
         => await _entities.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] include)
+        {
+            IQueryable<T> query = _entities.AsQueryable();
+            query = include.Aggregate(query, (current, include) => current.Include(include));
+            return await query.FirstOrDefaultAsync(x => x.Id == id);
+        }
 
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
         }
 
+        // public async Task UpdateAsync(T entity)
+        // {
+        //     EntityEntry entityEntry = _context.Entry<T>(entity);
+        //     entityEntry.State = EntityState.Modified;
+        //     await SaveChanges();
+        // }
+
         public async Task UpdateAsync(T entity)
         {
-            EntityEntry entityEntry = _context.Entry<T>(entity);
-            entityEntry.State = EntityState.Modified;
-            await SaveChanges();
+            var existingEntity = await _entities.FirstOrDefaultAsync(e => e.Id == entity.Id);
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+                await SaveChanges();
+            }
         }
+
     }
 }

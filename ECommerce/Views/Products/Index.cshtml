@@ -9,15 +9,32 @@
 	{
 		<div class="col-md-3">
 			<div class="card">
+				<a asp-action="Edit" asp-controller="Products" asp-route-id="@item.Id">
+					<i class="fas fas-regular fa-pencil"></i>
+				</a>
+				<a asp-action="Delete" asp-route-id="@item.Id">
+					<input type="submit" value="Delete" class="btn btn-outline-danger"
+						   onclick="return confirm('Are You Sure Want To Delete This Category')" />
+				</a>
+				
 
-				<img src="@item.Image" alt="@item.Name" style="width:90%;height:200px;" />
+
+				<a asp-action="Details" asp-route-id="@item.Id">
+					<img src="@item.Image" alt="@item.Name" style="width:90%;height:200px;" />
+				</a>
+				
 				<h1>@item.Name</h1>
 				<p>@item.Price.ToString("C")</p>
 				<p>@item.Description</p>
 				<p style="color:@item.ProductColor">@item.ProductColor</p>
 				<p>@item.Category.Name</p>
-				<button>Add To Cart</button>
+				<a class="btn btn-success" asp-controller="Orders" asp-action="AddToCart" asp-route-id="@item.Id">
+					<i class="fas fa-regular fa-shopping-basket mr-2"></i>
+					Add To Cart
+				</a>
 			</div>
 		</div>
 	}
 </div>
+
+@await Html.PartialAsync("_CreateItem", "Products")

@@ -35,9 +35,5 @@
 		</table>
 	</div>
 </div>
-<div class="text-white" style="position:fixed;right:25px;bottom:80px;z-index: 1000;">
-	<a asp-action="Create" asp-controller="Categories" class="btn btn-success">
-		<i class="fas fa-plus ml-2"></i>
-		Create</a>
-</div>
 
+@await Html.PartialAsync("_CreateItem", "Categories" )
